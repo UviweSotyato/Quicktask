@@ -1,7 +1,5 @@
-// src/components/Navbar.tsx
-
 import { useState, useEffect } from "react";
-import '../index.css'
+import "../index.css";
 
 function Navbar() {
   const [active, setActive] = useState("Home");
@@ -10,8 +8,9 @@ function Navbar() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      if (window.innerWidth >= 768) setMenuOpen(false);
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (!mobile) setMenuOpen(false);
     };
 
     window.addEventListener("resize", handleResize);
@@ -22,7 +21,13 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="brand">Quicktask</div>
+      {/* Brand / Logo */}
+      <h1
+        className="brand"
+        onDoubleClick={() => alert("👀 You’re curious… good sign.")}
+      >
+        Quicktask
+      </h1>
 
       {/* Desktop Menu */}
       {!isMobile && (
@@ -43,7 +48,10 @@ function Navbar() {
 
       {/* Mobile Hamburger */}
       {isMobile && (
-        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+        <div
+          className="hamburger"
+          onClick={() => setMenuOpen((prev) => !prev)}
+        >
           <span />
           <span />
           <span />
@@ -68,8 +76,11 @@ function Navbar() {
 
           <button className="cta-button mobile-cta">Get Started</button>
         </div>
+        
       )}
+      <div className="scroll-progress" />
     </nav>
+    
   );
 }
 
