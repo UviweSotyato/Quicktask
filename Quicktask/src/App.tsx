@@ -3,9 +3,10 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Hero from "./pages/Hero";
 import Background from "./background";
+// Import confetti if you want the party command
+import confetti from "canvas-confetti";
 
 export default function App() {
-  
   const [commandOpen, setCommandOpen] = useState(false);
 
   /* ===============================
@@ -25,7 +26,6 @@ export default function App() {
     const handler = (e: KeyboardEvent) => {
       if (e.key === code[index]) {
         index++;
-
         if (index === code.length) {
           document.body.classList.toggle("dev-mode");
           alert("✨ Developer mode toggled.");
@@ -49,10 +49,8 @@ export default function App() {
       const height =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
-
       const progress = (scrollTop / height) * 100;
       const bar = document.querySelector(".scroll-progress") as HTMLElement;
-
       if (bar) bar.style.width = `${progress}%`;
     };
 
@@ -74,7 +72,6 @@ export default function App() {
     };
 
     window.addEventListener("mousemove", move);
-
     return () => {
       window.removeEventListener("mousemove", move);
       glow.remove();
@@ -135,14 +132,51 @@ export default function App() {
             onClick={(e) => e.stopPropagation()}
           >
             <h3>Quick Command</h3>
-
             <input
               autoFocus
               placeholder="Type a command..."
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  alert(`Command executed: ${e.currentTarget.value}`);
+                  const command = e.currentTarget.value.toLowerCase().trim();
+
+                  switch (command) {
+                    case "theme":
+                      document.body.classList.toggle("light-mode");
+                      alert("✨ Theme toggled!");
+                      break;
+                    case "rainbow":
+                      document.body.classList.toggle("rainbow-text");
+                      alert("🌈 Rainbow mode toggled!");
+                      break;
+                    case "party":
+                      confetti({ particleCount: 150, spread: 70 });
+                      alert("🎉 Party time!");
+                      break;
+                    case "surprise":
+                      const img = document.createElement("img");
+                      img.src = "/meme.png";
+                      img.style.position = "fixed";
+                      img.style.top = "50%";
+                      img.style.left = "50%";
+                      img.style.transform = "translate(-50%, -50%)";
+                      img.style.zIndex = "9999";
+                      img.style.width = "300px";
+                      document.body.appendChild(img);
+                      setTimeout(() => img.remove(), 5000);
+                      break;
+                    case "sound":
+                      const audio = new Audio("/secret-sound.mp3");
+                      audio.play();
+                      break;
+                    case "trail":
+                      document.body.classList.toggle("cursor-trail");
+                      break;
+                    default:
+                      alert("❌ Unknown command");
+                  }
+
                   setCommandOpen(false);
+                  e.currentTarget.value = "";
                 }
               }}
             />
