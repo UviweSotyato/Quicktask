@@ -5,6 +5,7 @@ import Hero from "./pages/Hero";
 import Background from "./background";
 
 export default function App() {
+  
   const [commandOpen, setCommandOpen] = useState(false);
 
   /* ===============================
