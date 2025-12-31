@@ -630,3 +630,254 @@ body.dev-mode * {
 }
 
 
+/* =========================
+   FOOTER
+========================= */
+footer {
+  position: relative;
+  background: #141414;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #bfc3c7;
+  padding: 60px 20px;
+  overflow: hidden;
+  text-align: center;
+  z-index: 100;
+}
+
+footer .footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+footer h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #f5f3ee;
+  margin-bottom: 8px;
+}
+
+footer p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #bfc3c7;
+}
+
+footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+footer .footer-links a {
+  color: #bfc3c7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+footer .footer-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+footer .footer-links a:hover {
+  color: #f5f3ee;
+}
+
+footer .footer-links a:hover::after {
+  width: 100%;
+}
+
+/* Glowing footer blobs */
+footer .glow-footer {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.25;
+  animation: floatGlow 20s infinite ease-in-out alternate;
+}
+
+footer .glow-footer.one {
+  background: #ffffff;
+  top: -80px;
+  left: -60px;
+}
+
+footer .glow-footer.two {
+  background: #cfd3d6;
+  bottom: -80px;
+  right: -60px;
+  animation-delay: 8s;
+}
+
+/* Copyright / small text */
+footer .footer-copy {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: #8f8f8f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  footer .footer-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  footer .footer-links {
+    gap: 16px;
+  }
+}
+/* =========================
+   CONTACT SECTION
+========================= */
+.contact {
+  width: 100%;
+  max-width: 900px;
+  margin: 100px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: clamp(2.5rem, 5vw, 3rem);
+  font-weight: 900;
+  color: #f5f3ee;
+  margin-bottom: 12px;
+}
+
+.contact-subtitle {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: #bfc3c7;
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #141414;
+  color: #f5f3ee;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #e5e7eb;
+  box-shadow: 0 0 15px rgba(229, 231, 235, 0.2);
+}
+
+.contact-success {
+  margin-top: 20px;
+  color: #22c55e;
+  font-weight: 600;
+  font-size: 1.1rem;
+  animation: fadeUp 0.5s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-title {
+    font-size: 2.2rem;
+  }
+  .contact-subtitle {
+    font-size: 1.2rem;
+  }
+}
+/* =========================
+   ABOUT SECTION
+========================= */
+.about {
+  width: 100%;
+  max-width: 1000px;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 30px rgba(229,231,235,0.3));
+}
+
+.about-text {
+  flex: 2;
+  min-width: 300px;
+}
+
+.about-title {
+  font-size: clamp(2.5rem, 5vw, 3rem);
+  font-weight: 900;
+  color: #f5f3ee;
+  margin-bottom: 16px;
+}
+
+.about-description {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #bfc3c7;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .about-container {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .about-image img {
+    width: 200px;
+    height: 200px;
+  }
+}

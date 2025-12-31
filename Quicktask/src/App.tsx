@@ -3,8 +3,11 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Hero from "./pages/Hero";
 import Background from "./background";
-// Import confetti if you want the party command
-import confetti from "canvas-confetti";
+import Footer from "./pages/Footer";
+import Features from "./pages/Features";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import confetti from "canvas-confetti"; // Make sure you installed: npm i canvas-confetti
 
 export default function App() {
   const [commandOpen, setCommandOpen] = useState(false);
@@ -14,13 +17,12 @@ export default function App() {
   =============================== */
   useEffect(() => {
     const code = [
-      "ArrowUp", "ArrowUp",
-      "ArrowDown", "ArrowDown",
-      "ArrowLeft", "ArrowRight",
-      "ArrowLeft", "ArrowRight",
-      "b", "a",
+      "ArrowUp","ArrowUp",
+      "ArrowDown","ArrowDown",
+      "ArrowLeft","ArrowRight",
+      "ArrowLeft","ArrowRight",
+      "b","a",
     ];
-
     let index = 0;
 
     const handler = (e: KeyboardEvent) => {
@@ -46,9 +48,7 @@ export default function App() {
   useEffect(() => {
     const onScroll = () => {
       const scrollTop = window.scrollY;
-      const height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const progress = (scrollTop / height) * 100;
       const bar = document.querySelector(".scroll-progress") as HTMLElement;
       if (bar) bar.style.width = `${progress}%`;
@@ -83,14 +83,8 @@ export default function App() {
   =============================== */
   useEffect(() => {
     const move = (e: MouseEvent) => {
-      document.documentElement.style.setProperty(
-        "--mx",
-        `${(e.clientX / window.innerWidth - 0.5) * 20}px`
-      );
-      document.documentElement.style.setProperty(
-        "--my",
-        `${(e.clientY / window.innerHeight - 0.5) * 20}px`
-      );
+      document.documentElement.style.setProperty("--mx", `${(e.clientX / window.innerWidth - 0.5) * 20}px`);
+      document.documentElement.style.setProperty("--my", `${(e.clientY / window.innerHeight - 0.5) * 20}px`);
     };
 
     window.addEventListener("mousemove", move);
@@ -104,7 +98,7 @@ export default function App() {
     const handleKeys = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
-        setCommandOpen((prev) => !prev);
+        setCommandOpen(prev => !prev);
       }
     };
 
@@ -112,32 +106,32 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKeys);
   }, []);
 
+  /* ===============================
+     RENDER
+  =============================== */
   return (
     <>
       <Background />
       <div className="scroll-progress" />
-
       <Navbar />
       <Home />
       <Hero />
+      <About />
+      <Features />
+      <Contact />
+      <Footer/>
 
       {/* Command Palette */}
       {commandOpen && (
-        <div
-          className="command-overlay"
-          onClick={() => setCommandOpen(false)}
-        >
-          <div
-            className="command-box"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="command-overlay" onClick={() => setCommandOpen(false)}>
+          <div className="command-box" onClick={(e) => e.stopPropagation()}>
             <h3>Quick Command</h3>
             <input
               autoFocus
               placeholder="Type a command..."
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  const command = e.currentTarget.value.toLowerCase().trim();
+                  const command = (e.currentTarget.value || "").toLowerCase().trim();
 
                   switch (command) {
                     case "theme":
@@ -175,8 +169,8 @@ export default function App() {
                       alert("❌ Unknown command");
                   }
 
-                  setCommandOpen(false);
                   e.currentTarget.value = "";
+                  setCommandOpen(false);
                 }
               }}
             />
